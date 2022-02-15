@@ -11,10 +11,14 @@
 		<main>
 			<h1>Homeflow Front-end Tech Test</h1>
 
-			<div id="app"></div>
+			<!-- <div id="app"></div> -->
 			<div id="app2">
-				
-				<div>{{ message }}</div>
+
+				<!-- search -->
+				<div id="search">
+					<input type="text" placeholder="type a place name" v-model="searchTermTemp" v-on:keyup.enter="searchClick()" />
+					<input type="button" value="Search" v-bind:disabled="!enabled" v-on:click="searchClick()" />
+				</div>
 
 
 				<!-- navigation -->
@@ -26,9 +30,17 @@
 					</span>
 				</div>
 
+				
+				<!-- search placeholder -->
+				<div v-if="!enabled">Searching...</div>
+				<!-- error message -->
+				<div v-if="apierror">An error ocurred.</div>
+				<!-- nothing found -->
+				<div v-if="enabled && !apierror && !properties.length">No properties corresponding to your search were found.</div>
+
 
 				<!-- main list view -->
-				<table class="hf-properties border" v-if="!cprop">
+				<table class="hf-properties border" v-if="properties.length && !cprop">
 					<tr>
 						<th>Address</th>
 						<th>Info</th>
