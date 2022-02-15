@@ -1,3 +1,17 @@
+# dinman notes
+
+Hello, here are my changes to the homeflow test app. I really just added some search and display code, and the ability to select a property to go into a details view. Nothing too huge, I hope it is enough to show basic competancy.
+
+I chose vue.js for this because its easy to use and seems pretty performant. It should be nice and easy to read as well.
+
+I tried to do this task using the windows ruby installer... boy was that a mistake. It tried and failed to install msys2, and then couldn't compile several dependancies. In future you might reccomend people to go straight to wsl if they are on windows, it worked perfectly on the default ubuntu instance out of the box.
+
+Thanks very much for considering me.
+
+- doug
+
+---
+
 # Homeflow Front-end Technical test
 
 At Homeflow, we like our developers to be comfortable with a broad range of technologies and have great problem-solving ability. This repo is a basic web app that currently fetches some properties from our API and outputs them to the browser's JS console.
