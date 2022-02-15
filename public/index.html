@@ -1,18 +1,88 @@
 <html>
-  <head>
-    <title>Homeflow FE Tech Test</title>
+	<head>
+		<title>Homeflow FE Tech Test</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet" />
-  </head>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet" />
+		<script src="https://unpkg.com/vue@3"></script>
+	</head>
 
-  <body>
-    <main>
-      <h1>Homeflow Front-end Tech Test</h1>
+	<body>
+		<main>
+			<h1>Homeflow Front-end Tech Test</h1>
 
-      <div id="app"></div>
-    </main>
+			<div id="app"></div>
+			<div id="app2">
+				
+				<div>{{ message }}</div>
 
-    <script src="/main.js"></script>
-  </body>
+
+				<!-- navigation -->
+				<div id="breadcrumb">
+					<a class="crumb" v-on:click="propDeselect()">Properties in {{ searchTerm }}</a>
+					<span v-if="cprop">
+						<span class="arrows">&gt;&gt;</span> 
+						<a class="crumb">{{ cprop.searchable_keyword }}</a>
+					</span>
+				</div>
+
+
+				<!-- main list view -->
+				<table class="hf-properties border" v-if="!cprop">
+					<tr>
+						<th>Address</th>
+						<th>Info</th>
+						<th>Price</th>
+						<th>Agency</th>
+						<th>Pic</th>
+					</tr>
+					<tr v-for="(prop, index) in properties">
+						<td><a class="hf-property-name" v-on:click="propSelect(index)">{{ prop.display_address }}</a></td>
+						<td>
+							<div><span class="hf-property-subhead">type:</span> {{ prop.property_type }}</div>
+							<div><span class="hf-property-subhead">tags:</span> {{ shortTags(prop.tags) }}</div>
+						</td>
+						<td>{{ prop.price }}</td>
+						<td class="hf-agent">
+							<img class="hf-agent-img" v-bind:src="imgserv + prop.agency.agency_logo" />
+							<div>{{ prop.agency.agency_name }}</div>
+						</td>
+						<td><img class="hf-property-img" v-bind:src="imgserv + prop.photos[0]" /></td>
+					</tr>
+				</table>
+
+
+				<!-- details view -->
+				<table class="hf-details" v-if="cprop">
+					<tr> <th>Address</th> <td>{{ cprop.display_address }}</td> </tr>
+					<tr> <th>Town</th> <td>{{ cprop.town }}</td> </tr>
+					<tr> <th>Postcode</th> <td>{{ cprop.postcode }}</td> </tr>
+					<tr> <th>Type</th> <td>{{ cprop.property_type }}</td> </tr>
+					<tr> <th>Status</th> <td>{{ cprop.status }}</td> </tr>
+					<tr v-if="cprop.tenure"> <th>Tenure</th> <td>{{ cprop.tenure }}</td> </tr>
+					<tr> <th>Price</th> <td>{{ cprop.price }}</td> </tr>
+					<tr> <th>Tel.</th> <td>{{ cprop.contact_telephone }}</td> </tr>
+					<tr>
+						<th>Agency</th> 
+						<td>
+							<img class="hf-agent-img" v-bind:src="imgserv + cprop.agency.agency_logo" />
+							<div class="hf-agent-info">
+								<div>{{ cprop.agency.agency_name }} <span v-if="cprop.agency.branch">({{ cprop.agency.branch.branch_name }})</span> </div>
+								<a v-bind:href="'http://' + cprop.agency.external_domain" target="_blank">{{ cprop.agency.external_domain }}</a>
+						</td> 
+					</tr>
+					<tr> <th>Description</th> <td>{{ cprop.short_description }}</td> </tr>
+					<tr>
+						<td colspan="2">
+							<img class="hf-property-img" v-for="photo in cprop.photos" v-bind:src="imgserv + photo" /> &nbsp;
+						</td>
+					</tr>
+					<tr> <th>Tags</th> <td>{{ longTags(cprop.tags) }}</td> </tr>
+				</table>
+
+			</div>
+		</main>
+
+		<script src="/main.js"></script>
+	</body>
 </html>

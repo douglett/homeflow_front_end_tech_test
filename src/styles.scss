@@ -12,3 +12,96 @@ main {
     text-align: center;
   }
 }
+
+
+// breadcrumb
+#breadcrumb {
+  text-align: left;
+  margin: 10px 0;
+
+  .arrows {
+    display: inline-block;
+    color: lightgrey;
+    padding: 0 6px;
+  }
+  
+  .crumb {
+    color: grey;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+      color:blue;
+    }
+  }
+}
+
+
+// table general
+.hf-property-img {
+  width: 120px;
+  height: 90px;
+  background-color: lightgray;
+  margin: 2px;
+}
+
+
+// main table
+.hf-properties {
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+
+  &.border td, &.border th {
+    border: 1px solid black;
+    padding: 2px 4px;
+  }
+  
+  .hf-property-name {
+    cursor: pointer;
+    &:hover {
+      color: blue;
+    }
+  }
+  .hf-property-subhead {
+    font-weight: bold;
+  }
+  .hf-agent {
+    text-align: center;
+  }
+  .hf-agent-img {
+    height: 26px;
+    width: 26px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+
+// details view
+.hf-details {
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+
+ td, th {
+    text-align: left;
+    vertical-align: top;
+    vertical-align: top;
+    padding-bottom: 10px;
+  }
+  th {
+    width: 100px;
+  }
+  td {
+  }
+  .hf-agent-img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  .hf-agent-info {
+    display: inline-block;
+  }
+}
